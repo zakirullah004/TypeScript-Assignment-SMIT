@@ -158,48 +158,111 @@
 // the private properties directly.
 
 
-class BankAccount {
-    private balance:number
-    readonly accountNumber : string
+// class BankAccount {
+//     private balance:number
+//     readonly accountNumber : string
 
-    constructor(bln:number , accN : string){
-        this.balance = bln
-        this.accountNumber = accN
+//     constructor(bln:number , accN : string){
+//         this.balance = bln
+//         this.accountNumber = accN
+//     }
+
+//     getBalance(){
+//         return this.balance
+//     }
+//     getAccountNumber(){
+//         return this.accountNumber
+//     }
+
+//     deposit(amount:number){
+//         if(amount > 0){
+//             this.balance += amount
+//             alert(amount + ":amount added ")
+//         }
+//     }
+
+//     withdraw(amount:number){
+//         if(amount > this.balance){
+//             alert("no enough money")
+//         }else{
+//             this.balance -= amount
+//             alert(amount + "withdraw")
+//         }
+//     }
+
+// }
+
+// let account1 = new BankAccount(1000,"abc2343ebwhxawewz")
+// account1.getBalance()
+// account1.getAccountNumber()
+// account1.deposit(100)
+
+// console.log(account1);
+
+
+
+
+//! ********************************************************************
+
+
+
+//! ********************************************************************
+// Question 5: Abstract Classes
+
+// Create an abstract class called Shape with a protected property for color (string),
+// a constructor that sets the color, an abstract method called calculateArea() that
+// returns a number, and a concrete method called getColor() that returns the color.
+// Then create two concrete classes that extend Shape: Circle with a property for
+// radius (number), and Rectangle with properties for width (number) and height
+// (number). Implement the calculateArea() method in each subclass. Then create
+// instances of both shapes, calculate their areas, and get their colors.
+
+
+abstract class Shape{
+    constructor(protected color:string){}
+
+    getColor(){
+        return this.color
+    }
+    abstract calculagteArea():void;
+}
+
+class Cricle extends Shape{
+
+    radius:number
+
+    constructor(color:string,rd:number){
+        super(color = color)
+        this.radius = rd
     }
 
-    getBalance(){
-        return this.balance
-    }
-    getAccountNumber(){
-        return this.accountNumber
-    }
-
-    deposit(amount:number){
-        if(amount > 0){
-            this.balance += amount
-            alert(amount + ":amount added ")
-        }
-    }
-
-    withdraw(amount:number){
-        if(amount > this.balance){
-            alert("no enough money")
-        }else{
-            this.balance -= amount
-            alert(amount + "withdraw")
-        }
+    calculagteArea():void{
+        console.log(`Area of Circle is :${3.142 * (this.radius * this.radius)} | Color is${super.getColor()}`)
     }
 
 }
 
-let account1 = new BankAccount(1000,"abc2343ebwhxawewz")
-account1.getBalance()
-account1.getAccountNumber()
-account1.deposit(100)
+let circle1 = new Cricle("blue",2)
+console.log(circle1);
+console.log(circle1.calculagteArea());
 
-console.log(account1);
+class Rectangle extends Shape{
 
+    width : number
+    height :number
+    constructor(color:string,w:number,h:number){
+        super(color = color)
+        this.width = w
+        this.height = h
+    }
 
+    calculagteArea():void{
+        console.log(`Area of Rectangle is${this.width * this.height} | Color is ${super.getColor()}`);
+    }
 
+}
 
+let Rec1 = new Rectangle("orange",3,4)
+console.log(Rec1);
+console.log(Rec1.calculagteArea());
 //! ********************************************************************
