@@ -72,62 +72,134 @@
 // (boolean). Override the getInfo() method in each subclass to include the additional information.
 
 
-class Vehicle {
-    make :string
-    model : string
-    year : number
+// class Vehicle {
+//     make :string
+//     model : string
+//     year : number
 
-    constructor(mk:string , md:string ,yr:number){
-        this.make = mk,
-        this.model = md,
-        this.year = yr
+//     constructor(mk:string , md:string ,yr:number){
+//         this.make = mk,
+//         this.model = md,
+//         this.year = yr
+//     }
+
+//     getInfo(){
+//         return `make:${this.make}, model:${this.model}, year${this.year}`
+//     }
+// }
+
+// class Car extends Vehicle { 
+//     door : number
+
+//     constructor(mk:string , md:string ,yr:number, doors : number){
+//         super(mk = mk,md = md,yr = yr)
+//         this.door = doors
+//     }
+
+//     getInfo(): string {
+//         return `${super.getInfo()} doors: ${this.door}`
+//     }
+// }
+
+// let newCar = new Car("Toyota" , "Gli" , 2012 ,4)
+// newCar.getInfo()
+
+
+// class Bike extends Vehicle { 
+//     hasSideCar : boolean
+
+//     constructor(mk:string , md:string ,yr:number,hc : boolean){
+//         super(mk = mk,md = md,yr = yr)
+//         this.hasSideCar = hc
+//     }
+
+//     getInfo(): string {
+//         return `${super.getInfo()} has Side Car : ${this.hasSideCar}`
+//     }
+// }
+
+
+// let newBike = new Bike("BMW" , "bmw20394" , 2022 , true)
+// newBike.getInfo()
+
+// console.log(newCar);
+// console.log(newBike);
+
+//! ********************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//! ********************************************************************
+
+//? Question 4: Access Modifiers and Getters/Setters
+// Create a class called BankAccount with:
+// ● A private property for balance (number)
+// ● A private readonly property for accountNumber (string)
+// ● A constructor that initializes both properties
+// ● A getter method for balance
+// ● A getter method for accountNumber
+// ● A method called deposit(amount: number) that adds to the balance
+// ● A method called withdraw(amount: number) that subtracts from the balance but prevents
+// overdrafts by throwing an error if the amount is greater than the balance
+// Test the class by creating an account, making deposits and withdrawals, and trying to access
+// the private properties directly.
+
+
+class BankAccount {
+    private balance:number
+    readonly accountNumber : string
+
+    constructor(bln:number , accN : string){
+        this.balance = bln
+        this.accountNumber = accN
     }
 
-    getInfo(){
-        return `make:${this.make}, model:${this.model}, year${this.year}`
+    getBalance(){
+        return this.balance
     }
+    getAccountNumber(){
+        return this.accountNumber
+    }
+
+    deposit(amount:number){
+        if(amount > 0){
+            this.balance += amount
+            alert(amount + ":amount added ")
+        }
+    }
+
+    withdraw(amount:number){
+        if(amount > this.balance){
+            alert("no enough money")
+        }else{
+            this.balance -= amount
+            alert(amount + "withdraw")
+        }
+    }
+
 }
 
-// let car = new Vehicle("Toyota","V8",2003)
-// car.getInfo()
+let account1 = new BankAccount(1000,"abc2343ebwhxawewz")
+account1.getBalance()
+account1.getAccountNumber()
+account1.deposit(100)
 
-// // console.log(car);
-
-class Car extends Vehicle { 
-    door : number
-
-    constructor(mk:string , md:string ,yr:number, doors : number){
-        super(mk = mk,md = md,yr = yr)
-        this.door = doors
-    }
-
-    getInfo(): string {
-        return `${super.getInfo()} doors: ${this.door}`
-    }
-}
-
-let newCar = new Car("Toyota" , "Gli" , 2012 ,4)
-newCar.getInfo()
+console.log(account1);
 
 
-class Bike extends Vehicle { 
-    hasSideCar : boolean
 
-    constructor(mk:string , md:string ,yr:number,hc : boolean){
-        super(mk = mk,md = md,yr = yr)
-        this.hasSideCar = hc
-    }
-
-    getInfo(): string {
-        return `${super.getInfo()} has Side Car : ${this.hasSideCar}`
-    }
-}
-
-
-let newBike = new Bike("BMW" , "bmw20394" , 2022 , true)
-newBike.getInfo()
-
-console.log(newCar);
-console.log(newBike);
 
 //! ********************************************************************
